@@ -1,12 +1,14 @@
 name: TFC Action
 
 on:
-    push: 
+    pull_request: 
+         
     ##
 
 jobs:
     tfc:
         runs-on: ubuntu-latest
+        if: github.event.number == 1
         steps:
             - name: Create TFC Workspace
               uses: ibrt2016/actions-tfc-create-workspace@main
@@ -15,4 +17,6 @@ jobs:
                 name: ${{ github.event.repository.name }}-dev
                 org: hcta-azure-demo1221
                 env: dev
+            - name: Run always
+              run: echo "Run Always"
                 
